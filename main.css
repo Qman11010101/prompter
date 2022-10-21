@@ -1,0 +1,82 @@
+body {
+    background-color: #333;
+    color: #eee;
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+header, main, footer {
+    width: min(700px, 90%);
+    margin: 0 auto;
+}
+
+hr {
+    color: #eee;
+}
+
+/* プロンプトセクション */
+
+.promptSection {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #eee;
+    box-sizing: border-box;
+    vertical-align: text-top;
+}
+
+.sectionTitle {
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+/* 入力部 */
+
+.wordAdder {
+    font-size: 1.2em;
+    width: 200px;
+    margin-right: 10px;
+}
+
+.promptSection .wordAddingButton {
+    font-size: 1.2em;
+    background-color: #eee;
+    border: none;
+    border-radius: 5px;
+}
+
+/* 単語部 */
+
+.wordlist {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.wordlist div {
+    padding: 5px;
+    background-color: #eee;
+    color: #333;
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.wordlist div button {
+    margin-right: 5px;
+    border: 1px solid #333;
+    border-radius: 10px;
+    background-color: #eee;
+    color: #333;
+}
+
+.wordlist div button:hover {
+    background-color: #333;
+    color: #eee;
+}
+
+/* 出力部 */
+
+#output {
+    width: 100%;
+    font-family: "Roboto mono", monospace;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>プロンプト整頓機</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>プロンプト整頓機</h1>
+        <p>
+            画像生成AIのプロンプトをジャンルごとに分けて整理しつつ構築できます。
+        </p>
+    </header>
+    <main>
+        <section class="promptSection">
+            <div class="sectionTitle">クオリティ</div>
+            <input class="wordAdder" id="quality_input"><button class="wordAddingButton"
+                onclick="addWord('quality')">追加する</button>
+            <div class="wordlist" id="quality">
+            </div>
+        </section>
+        <section class="promptSection">
+            <div class="sectionTitle">情景・シチュエーション・オブジェクト</div>
+            <input class="wordAdder" id="scene_input"><button class="wordAddingButton"
+                onclick="addWord('scene')">追加する</button>
+            <div class="wordlist" id="scene"></div>
+        </section>
+        <section class="promptSection">
+            <div class="sectionTitle">容姿</div>
+            <input class="wordAdder" id="body_input"><button class="wordAddingButton"
+                onclick="addWord('body')">追加する</button>
+            <div class="wordlist" id="body"></div>
+        </section>
+        <section class="promptSection">
+            <div class="sectionTitle">服装・持ち物</div>
+            <input class="wordAdder" id="cloth_input"><button class="wordAddingButton"
+                onclick="addWord('cloth')">追加する</button>
+            <div class="wordlist" id="cloth"></div>
+        </section>
+        <section class="promptSection">
+            <div class="sectionTitle">行動</div>
+            <input class="wordAdder" id="misc_input"><button class="wordAddingButton"
+                onclick="addWord('misc')">追加する</button>
+            <div class="wordlist" id="misc"></div>
+        </section>
+        <section>
+            <h2>出力結果</h2>
+            <div id="output"></div>
+            <button id="copy" onclick="copyOutput()">コピーする</button>
+        </section>
+    </main>
+    <footer>
+        <hr>
+        <p>(C) 2022 Kjuman Enobikto</p>
+    </footer>
+</body>
+
+</html>
