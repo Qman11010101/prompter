@@ -43,9 +43,15 @@ function wordDecrement(objID) {
     update();
 }
 
-function copyOutput() {
-    const output = document.getElementById("output");
+function copyOutput(objID) {
+    const output = document.getElementById(objID);
     if (navigator.clipboard) {
         navigator.clipboard.writeText(output.innerText);
     }
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("origin").addEventListener("input", () => {
+        document.getElementById("converted").innerText = document.getElementById("origin").value.replaceAll("(", "{").replaceAll(")", "}");
+    });
+});

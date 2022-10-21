@@ -59,7 +59,16 @@
         <section>
             <h2>出力結果</h2>
             <div id="output"></div>
-            <button id="copy" onclick="copyOutput()">コピーする</button>
+            <button id="copy" onclick="copyOutput('output')">コピーする</button>
+        </section>
+        <section id="converter">
+            <h2>おまけ:元素法典変換機</h2>
+            <p>元素法典内テキストの()を{}に変換します。<br>
+            下のテキストエリアに元のテキストを貼り付けてください。</p>
+            <textarea id="origin"></textarea>
+            <h3>出力結果</h3>
+            <div id="converted"></div>
+            <button id="copy" onclick="copyOutput('converted')">コピーする</button>
         </section>
     </main>
     <footer>
