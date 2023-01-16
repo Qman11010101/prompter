@@ -4,7 +4,9 @@ body {
     font-family: "Noto Sans JP", sans-serif;
 }
 
-header, main, footer {
+header,
+main,
+footer {
     width: min(700px, 90%);
     margin: 0 auto;
 }
@@ -13,15 +15,59 @@ hr {
     color: #eee;
 }
 
-/* プロンプトセクション */
+.blank {
+    height: 10px;
+}
 
-.promptSection {
+.commonbox {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #eee;
     box-sizing: border-box;
     vertical-align: text-top;
+}
+
+/* 共通 */
+input[type="text"] {
+    font-size: 1.2em;
+    width: 200px;
+    margin-right: 10px;
+}
+
+button {
+    font-size: 1.2em;
+    background-color: #eee;
+    border: none;
+    border-radius: 5px;
+}
+
+/* インポーターセクション */
+.importerSection {
+    border: 1px dashed #eee;
+}
+
+.analyzingWord {
+    font-family: "Roboto mono", monospace;
+}
+
+#classificationArea {
+    display: none;
+}
+
+#classifyButtons {
+    display: flex;
+    flex-direction: column;
+}
+
+#classifyButtons button {
+    display: block;
+    width: fit-content;
+    margin: 3px 0;
+}
+
+/* プロンプトセクション */
+.promptSection {
+    border: 1px solid #eee;
 }
 
 .sectionTitle {
@@ -31,22 +77,9 @@ hr {
 }
 
 /* 入力部 */
-
-.wordAdder {
-    font-size: 1.2em;
-    width: 200px;
-    margin-right: 10px;
-}
-
-.promptSection .wordAddingButton {
-    font-size: 1.2em;
-    background-color: #eee;
-    border: none;
-    border-radius: 5px;
-}
+/* なし */
 
 /* 単語部 */
-
 .wordlist {
     display: flex;
     flex-wrap: wrap;
@@ -75,15 +108,16 @@ hr {
 }
 
 /* 出力部 */
-
-#output {
+#output,
+#converted {
     width: 100%;
     font-family: "Roboto mono", monospace;
+    margin-bottom: 10px;
 }
 
 /* おまけ */
-
 textarea {
     width: 100%;
     height: 5em;
+    font-size: large;
 }

@@ -1,5 +1,8 @@
 var wordCount = 0;
-const ph_word = "word_";
+const phWord = "word_";
+const promptGenres = ["quality", "scene", "body", "cloth", "misc"];
+var promptGlobal = [];
+var promptFirstWord = "";
 
 function update() {
     const output = document.getElementById("output");
@@ -12,19 +15,80 @@ function update() {
     output.innerText = string;
 }
 
-function addWord(objID) {
-    const word = document.getElementById(objID + "_input").value.replaceAll("{", "").replaceAll("}", "");
+function addWord(objID, textobj) {
+    let word;
+    if (textobj === null) {
+        word = document.getElementById(objID + "_input").value.replaceAll("{", "").replaceAll("}", "");
+    } else {
+        word = textobj;
+    }
     if (word === "") return;
     const wordList = document.getElementById(objID);
     const wordBlock = wordList.appendChild(document.createElement("div"));
-    wordBlock.id = ph_word + String(wordCount);
+    wordBlock.id = phWord + String(wordCount);
     wordBlock.innerHTML =
-        `<button class="inner" onclick="wordIncrement('${ph_word + String(wordCount)}')">＋</button>` +
-        `<button class="inner" onclick="wordDecrement('${ph_word + String(wordCount)}')">－</button>` +
+        `<button class="inner" onclick="wordIncrement('${phWord + String(wordCount)}')">＋</button>` +
+        `<button class="inner" onclick="wordDecrement('${phWord + String(wordCount)}')">－</button>` +
         `<span class="word">${word}</span>`;
     document.getElementById(objID + "_input").value = "";
     wordCount++;
     update();
+}
+
+function analyzePrompt() {
+    document.getElementById("classificationArea").style.display = "none";
+    const errtxt = document.getElementById("errtxt");
+    errtxt.innerText = "";
+
+    let prompt = document.getElementById("prompt_import_input").value.trim();
+    if (prompt === "") return;
+    if (prompt.endsWith(",")) {prompt = prompt.slice(0, prompt.length - 1)};
+    console.log(prompt)
+    let promptArray = prompt.split(",");
+    if (promptArray.length === 0) return;
+    for (let i = 0; i < promptArray.length; i++) {
+        if (promptArray[i].match(/[^\x01-\x7E]/)) {
+            errtxt.innerText = "Error: ASCII範囲外の文字が検出されました。/ Invalid letter detected (Out of ASCII.)";
+            return
+        }
+        promptArray[i] = promptArray[i].replaceAll("(", "{").replaceAll(")", "}");
+        let left = (promptArray[i].match(/{/g) || []).length;
+        let right = (promptArray[i].match(/}/g) || []).length;
+        if (left > right) {
+            for (let j = 0; j < (left - right); j++) {
+                promptArray[i] += "}";
+            }
+        } else if (left < right) {
+            let appendBracket = "";
+            for (let j = 0; j < (left - right); j++) {
+                appendBracket += "{";
+            }
+            promptArray[i] = appendBracket + promptArray[i];
+        }
+    }
+
+    document.getElementById("checktxt").innerText = `単語 ${promptArray[0]} を分類してください。/ Classify the word ${promptArray[0]}.`;
+    document.getElementById("classificationArea").style.display = "block";
+
+    promptFirstWord = promptArray.shift();
+    promptGlobal = promptArray;
+}
+
+function classify(genre) {
+    if (promptFirstWord !== "") {
+        // 最初
+        addWord(genre, promptFirstWord);
+        promptFirstWord = "";
+    } else {
+        addWord(genre, promptGlobal.shift());
+    }
+    if (promptGlobal.length === 0) {
+        document.getElementById("classificationArea").style.display = "none";
+        promptGlobal = [];
+        return;
+    }
+    const word = promptGlobal[0];
+    document.getElementById("checktxt").innerText = `単語 ${word} を分類してください。/ Classify the word ${word}.`;
 }
 
 function wordIncrement(objID) {
@@ -54,4 +118,5 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById("origin").addEventListener("input", () => {
         document.getElementById("converted").innerText = document.getElementById("origin").value.replaceAll("(", "{").replaceAll(")", "}");
     });
+    promptGenres.forEach(g => { document.getElementById(`${g}_input`).addEventListener("keydown", e => { if (e.code === "Enter") { addWord(g) } }) });
 });
