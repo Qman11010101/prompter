@@ -67,7 +67,7 @@ function analyzePrompt() {
         }
     }
 
-    document.getElementById("checktxt").innerText = `単語 ${promptArray[0]} を分類してください。/ Classify the word ${promptArray[0]}.`;
+    document.getElementById("checktxt").innerText = `単語 「${promptArray[0].trim()}」 を分類してください。/ Classify the word "${promptArray[0].trim()}".`;
     document.getElementById("classificationArea").style.display = "block";
 
     promptFirstWord = promptArray.shift();
@@ -77,10 +77,10 @@ function analyzePrompt() {
 function classify(genre) {
     if (promptFirstWord !== "") {
         // 最初
-        addWord(genre, promptFirstWord);
+        addWord(genre, promptFirstWord.trim());
         promptFirstWord = "";
     } else {
-        addWord(genre, promptGlobal.shift());
+        addWord(genre, promptGlobal.shift().trim());
     }
     if (promptGlobal.length === 0) {
         document.getElementById("classificationArea").style.display = "none";

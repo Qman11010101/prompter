@@ -4,6 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta property="og:title" content="プロンプト整頓機">
     <meta property="og:description" content="画像生成AIのプロンプトをジャンルごとに分けて整理しつつ構築できます。">
     <meta property="og:url" content="https://qman11010101.github.io/prompter/">
@@ -28,7 +29,7 @@
         </p>
     </header>
     <main>
-        <details class="commonbox importerSection" open><!--仮open-->
+        <details class="commonbox importerSection"><!--仮open-->
             <summary>プロンプトインポーター / Prompt importer</summary>
             <div class="blank"></div>
             <input type="text" id="prompt_import_input"><button onclick="analyzePrompt()">インポート / Import</button>
@@ -73,10 +74,11 @@
         <section>
             <h3>出力結果 / Result</h3>
             <div id="output"></div>
-            <button id="copy" onclick="copyOutput('output')">コピー / Copy</button>
+            <button id="copy" onclick="copyOutput('output')">コピー / Copy</button><br>
+            <!-- <span class="copied" id="promptResult"> ✓ コピーしました / Copied</span> -->
         </section>
         <section id="converter">
-            <h2>元素法典変換機 / "The Code of Quintessence" converter</h2>
+            <h2>元素法典変換機 / "The Code of Quintessence" changer</h2>
             <p>元素法典内テキストの()を{}に変換します。<br>
                 下のテキストエリアに元のテキストを貼り付けてください。</p>
             <p>Change <b>()</b> of <i>The Code of Quintessence</i> into <b>{}</b>.<br>
@@ -85,7 +87,8 @@
             <textarea id="origin"></textarea>
             <h3>出力結果 / Result</h3>
             <div id="converted"></div>
-            <button id="copy" onclick="copyOutput('converted')">コピー / Copy</button>
+            <button id="copy" onclick="copyOutput('converted')">コピー / Copy</button><br>
+            <!-- <span class="copied" id="convertResult">✓ コピーしました / Copied</span> -->
         </section>
     </main>
     <footer>
