@@ -15,6 +15,13 @@ hr {
     color: #eee;
 }
 
+summary {
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
 .blank {
     height: 10px;
 }
@@ -27,19 +34,21 @@ hr {
     vertical-align: text-top;
 }
 
-/* 共通 */
 input[type="text"] {
     font-size: 1.2em;
     width: 200px;
+    height: 28px;
+    margin-top: 10px;
     margin-right: 10px;
     border: none;
-    height: 28px;
     vertical-align: top;
 }
 
 button {
     display: inline-block;
     height: 30px;
+    margin-right: 10px;
+    margin-top: 10px;
     font-size: 1.2em;
     background-color: #eee;
     border: none;
@@ -47,12 +56,57 @@ button {
     vertical-align: top;
     padding: 2px 10px;
     transition-duration: .2s;
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
 
 button:hover {
     background-color: #555;
     color: #eee;
     transition-duration: .2s;
+}
+
+button:active {
+    background-color: #222;
+    color: #999;
+}
+
+.copybtn {
+    margin: 0;
+}
+
+.copied {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 1.2em;
+    color: #55ff55;
+}
+
+/* プロンプトバンクセクション */
+.promptBankSection {
+    border: 1px dashed #eee;
+}
+
+.promptBankInner {
+    border: 1px solid #eee;
+    margin: 10px 0 0;
+}
+
+.promptwrapper {
+    display: flex;
+}
+
+.ic_btn button {
+    display: inline;
+}
+
+.bank_prompt {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* インポーターセクション */
@@ -68,6 +122,10 @@ button:hover {
     display: none;
 }
 
+#checktxt {
+    line-height: 2.5em;
+}
+
 #classifyButtons {
     display: flex;
     flex-direction: column;
@@ -75,8 +133,13 @@ button:hover {
 
 #classifyButtons button {
     display: block;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
     width: fit-content;
-    margin: 3px 0;
+}
+
+#classifyButtons button:first-child {
+    margin: 0;
 }
 
 /* プロンプトセクション */
@@ -87,11 +150,12 @@ button:hover {
 .sectionTitle {
     font-weight: bold;
     font-size: 1.5em;
-    margin-bottom: 10px;
 }
 
 /* 入力部 */
-/* なし */
+.inner {
+    margin-top: 0;
+}
 
 /* 単語部 */
 .wordlist {

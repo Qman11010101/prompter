@@ -21,74 +21,80 @@
 <body>
     <header>
         <h1>プロンプト整頓機 / Prompt Neatener</h1>
-        <p>
-            NovelAIのプロンプトを、ジャンルごとに分けて整理しつつ簡単に作成できます。
-        </p>
-        <p>
-            Tidy and create the prompt of NovelAI by more easier way.
-        </p>
+        <p>NovelAIのプロンプトを、ジャンルごとに分けて整理しつつ簡単に作成できます。</p>
+        <p>Tidy and create the prompt of NovelAI by more easier way.</p>
     </header>
     <main>
-        <details class="commonbox importerSection"><!--仮open-->
-            <summary>プロンプトインポーター / Prompt importer</summary>
-            <div class="blank"></div>
-            <input type="text" id="prompt_import_input"><button onclick="analyzePrompt()">インポート / Import</button>
-            <div id="errtxt"></div>
-            <div id="classificationArea">
-                <span id="checktxt"></span>
-                <div id="classifyButtons">
-                    <button onclick="classify('quality')">クオリティ / Quality</button>
-                    <button onclick="classify('scene')">情景・オブジェクト / Scene, Object</button>
-                    <button onclick="classify('body')">容姿 / Looks</button>
-                    <button onclick="classify('cloth')">服装・持ち物 / Clothes, Belongings</button>
-                    <button onclick="classify('misc')">行動 / Action</button>
+        <section id="neatener">
+            <!-- <details class="commonbox promptBankSection" open>
+                <summary>プロンプトバンク / Prompt bank</summary>
+                <div class="commonbox promptBankInner">
+                    <div>{{masterpiece}}, {{{best quality}}}, {{ultra-detailed}}, {{illustration}}, {{disheveled hair}}, {1 girl}, {solo}, cute, dynamic angle, beautiful detailed eyes, {fist}, hairs between eyes, green eyes, {{{small breast}}}, nsfw, detailed small nipples, {silver hair}, bob hair, overexposure, ribbon, bowtie, white shirt, {game cg}, dealer,</div>
+                    <button>コピー / Copy</button><button>削除 / Delete</button>
                 </div>
-            </div>
-        </details>
-        <section class="commonbox promptSection">
-            <div class="sectionTitle">1. クオリティ / Quality</div>
-            <input type="text" id="quality_input"><button onclick="addWord('quality', null)">追加 / Add</button>
-            <div class="wordlist" id="quality">
-            </div>
-        </section>
-        <section class="commonbox promptSection">
-            <div class="sectionTitle">2. 情景・オブジェクト / Scene, Object</div>
-            <input type="text" id="scene_input"><button onclick="addWord('scene', null)">追加 / Add</button>
-            <div class="wordlist" id="scene"></div>
-        </section>
-        <section class="commonbox promptSection">
-            <div class="sectionTitle">3. 容姿 / Looks</div>
-            <input type="text" id="body_input"><button onclick="addWord('body', null)">追加 / Add</button>
-            <div class="wordlist" id="body"></div>
-        </section>
-        <section class="commonbox promptSection">
-            <div class="sectionTitle">4. 服装・持ち物 / Clothes, Belongings</div>
-            <input type="text" id="cloth_input"><button onclick="addWord('cloth', null)">追加 / Add</button>
-            <div class="wordlist" id="cloth"></div>
-        </section>
-        <section class="commonbox promptSection">
-            <div class="sectionTitle">5. 行動 / Action</div>
-            <input type="text" id="misc_input"><button onclick="addWord('misc', null)">追加 / Add</button>
-            <div class="wordlist" id="misc"></div>
-        </section>
-        <section>
-            <h3>出力結果 / Result</h3>
-            <div id="output"></div>
-            <button id="copy" onclick="copyOutput('output')">コピー / Copy</button><br>
-            <!-- <span class="copied" id="promptResult"> ✓ コピーしました / Copied</span> -->
+            </details> -->
+            <details class="commonbox importerSection" open><!--仮open-->
+                <summary>プロンプトインポーター / Prompt importer</summary>
+                <input type="text" id="prompt_import_input"><button onclick="analyzePrompt()">インポート /
+                    Import</button><button>画像から / From image</button>
+                <div id="errtxt"></div>
+                <div id="classificationArea">
+                    <span id="checktxt"></span>
+                    <div id="classifyButtons">
+                        <button onclick="classify('quality')">クオリティ / Quality</button>
+                        <button onclick="classify('scene')">情景・オブジェクト / Scene, Object</button>
+                        <button onclick="classify('body')">容姿 / Looks</button>
+                        <button onclick="classify('cloth')">服装・持ち物 / Clothes, Belongings</button>
+                        <button onclick="classify('misc')">行動 / Action</button>
+                    </div>
+                </div>
+            </details>
+            <section class="commonbox promptSection">
+                <div class="sectionTitle">1. クオリティ / Quality</div>
+                <input type="text" id="quality_input"><button onclick="addWord('quality', null)">追加 / Add</button>
+                <div class="wordlist" id="quality">
+                </div>
+            </section>
+            <section class="commonbox promptSection">
+                <div class="sectionTitle">2. 情景・オブジェクト / Scene, Object</div>
+                <input type="text" id="scene_input"><button onclick="addWord('scene', null)">追加 / Add</button>
+                <div class="wordlist" id="scene"></div>
+            </section>
+            <section class="commonbox promptSection">
+                <div class="sectionTitle">3. 容姿 / Looks</div>
+                <input type="text" id="body_input"><button onclick="addWord('body', null)">追加 / Add</button>
+                <div class="wordlist" id="body"></div>
+            </section>
+            <section class="commonbox promptSection">
+                <div class="sectionTitle">4. 服装・持ち物 / Clothes, Belongings</div>
+                <input type="text" id="cloth_input"><button onclick="addWord('cloth', null)">追加 / Add</button>
+                <div class="wordlist" id="cloth"></div>
+            </section>
+            <section class="commonbox promptSection">
+                <div class="sectionTitle">5. 行動 / Action</div>
+                <input type="text" id="misc_input"><button onclick="addWord('misc', null)">追加 / Add</button>
+                <div class="wordlist" id="misc"></div>
+            </section>
+            <section>
+                <h3>出力結果 / Result</h3>
+                <div id="prompt_output"></div>
+                <button class="copybtn" onclick="copyOutput('prompt_output')">コピー / Copy</button>
+                <!-- <span class="copied" id="prompt_output_result">✓ コピーしました / Copied</span> -->
+                <!-- <br> <button>バンクにセーブ / Save to the bank</button> -->
+            </section>
         </section>
         <section id="converter">
             <h2>元素法典変換機 / "The Code of Quintessence" changer</h2>
-            <p>元素法典内テキストの()を{}に変換します。<br>
-                下のテキストエリアに元のテキストを貼り付けてください。</p>
-            <p>Change <b>()</b> of <i>The Code of Quintessence</i> into <b>{}</b>.<br>
-                Paste the original text below.
+            <p>元素法典内プロンプトの()を{}に変換します。<br>
+                下のテキストエリアに元のプロンプトを貼り付けてください。</p>
+            <p>Change <b>()</b> of the prompt of <i>The Code of Quintessence</i> into <b>{}</b>.<br>
+                Paste the original prompt below.
             </p>
             <textarea id="origin"></textarea>
             <h3>出力結果 / Result</h3>
-            <div id="converted"></div>
-            <button id="copy" onclick="copyOutput('converted')">コピー / Copy</button><br>
-            <!-- <span class="copied" id="convertResult">✓ コピーしました / Copied</span> -->
+            <div id="prompt_converted"></div>
+            <button class="copybtn" onclick="copyOutput('prompt_converted')">コピー / Copy</button>
+            <!-- <span class="copied" id="prompt_converted_result">✓ コピーしました / Copied</span> -->
         </section>
     </main>
     <footer>

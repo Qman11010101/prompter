@@ -5,7 +5,7 @@ var promptGlobal = [];
 var promptFirstWord = "";
 
 function update() {
-    const output = document.getElementById("output");
+    const output = document.getElementById("prompt_output");
     const words = document.getElementsByClassName("word");
     let string = "";
     for (let i = 0; i < words.length; i++) {
@@ -84,11 +84,12 @@ function classify(genre) {
     }
     if (promptGlobal.length === 0) {
         document.getElementById("classificationArea").style.display = "none";
+        document.getElementById("prompt_import_input").value = "";
         promptGlobal = [];
         return;
     }
     const word = promptGlobal[0];
-    document.getElementById("checktxt").innerText = `単語 ${word} を分類してください。/ Classify the word ${word}.`;
+    document.getElementById("checktxt").innerText = `単語 「${word.trim()}」 を分類してください。/ Classify the word "${word.trim()}".`;
 }
 
 function wordIncrement(objID) {
@@ -111,6 +112,7 @@ function copyOutput(objID) {
     const output = document.getElementById(objID);
     if (navigator.clipboard) {
         navigator.clipboard.writeText(output.innerText);
+        document.getElementById(objID + "");
     }
 }
 
