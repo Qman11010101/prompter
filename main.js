@@ -118,7 +118,7 @@ function copyOutput(objID) {
 
 window.addEventListener('DOMContentLoaded', () => {
     document.getElementById("origin").addEventListener("input", () => {
-        document.getElementById("converted").innerText = document.getElementById("origin").value.replaceAll("(", "{").replaceAll(")", "}");
+        document.getElementById("prompt_converted").innerText = document.getElementById("origin").value.replaceAll("(", "{").replaceAll(")", "}");
     });
     promptGenres.forEach(g => { document.getElementById(`${g}_input`).addEventListener("keydown", e => { if (e.code === "Enter") { addWord(g) } }) });
 });

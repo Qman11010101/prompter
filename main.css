@@ -186,8 +186,8 @@ button:active {
 }
 
 /* 出力部 */
-#output,
-#converted {
+#prompt_output,
+#prompt_converted {
     width: 100%;
     font-family: "Roboto mono", monospace;
     margin-bottom: 10px;
