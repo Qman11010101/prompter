@@ -1,6 +1,7 @@
 body {
     background-color: #333;
     color: #eee;
+    line-height: 1.5em;
     font-family: "Noto Sans JP", sans-serif;
 }
 
@@ -11,8 +12,31 @@ footer {
     margin: 0 auto;
 }
 
+h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 30px 0 20px;
+}
+
+h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 20px 0 10px;
+}
+
+h3 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 15px 0 5px;
+}
+
+p {
+    line-height: 2em;
+}
+
 hr {
     color: #eee;
+    margin: 10px 0;
 }
 
 summary {
@@ -20,10 +44,6 @@ summary {
        -moz-user-select: none;
         -ms-user-select: none;
             user-select: none;
-}
-
-.blank {
-    height: 10px;
 }
 
 .commonbox {
@@ -35,21 +55,30 @@ summary {
 }
 
 input[type="text"] {
-    font-size: 1.2em;
+    font-size: 1.1em;
     width: 200px;
     height: 28px;
     margin-top: 10px;
     margin-right: 10px;
     border: none;
     vertical-align: top;
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #fff;
+    box-sizing: content-box
 }
 
-button {
+input[type="file"] {
+    display: none;
+}
+
+button, .buttonlabel {
     display: inline-block;
     height: 30px;
     margin-right: 10px;
     margin-top: 10px;
     font-size: 1.2em;
+    color: #333;
     background-color: #eee;
     border: none;
     border-radius: 5px;
@@ -63,15 +92,23 @@ button {
             user-select: none;
 }
 
-button:hover {
+button:hover, .buttonlabel:hover {
     background-color: #555;
     color: #eee;
     transition-duration: .2s;
 }
 
-button:active {
+button:active, .buttonlabel:active {
     background-color: #222;
     color: #999;
+}
+
+textarea {
+    background-color: #fff;
+    color: #333;
+    margin: 10px 0;
+    padding: 5px;
+    font-family: monospace;
 }
 
 .copybtn {
@@ -150,6 +187,7 @@ button:active {
 .sectionTitle {
     font-weight: bold;
     font-size: 1.5em;
+    height: 30px;
 }
 
 /* 入力部 */

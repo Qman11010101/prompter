@@ -10,6 +10,7 @@
     <meta property="og:url" content="https://qman11010101.github.io/prompter/">
     <meta property="og:type" content="website">
     <title>プロンプト整頓機</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,8 +36,10 @@
             </details> -->
             <details class="commonbox importerSection" open><!--仮open-->
                 <summary>プロンプトインポーター / Prompt importer</summary>
-                <input type="text" id="prompt_import_input"><button onclick="analyzePrompt()">インポート /
-                    Import</button><button>画像から / From image</button>
+                <input type="text" id="prompt_import_input" placeholder="{{masterpiece}}, ..."><button
+                    onclick="analyzePrompt()">インポート /
+                    Import</button><label class="buttonlabel" id="upload_img_label">画像から / From image<input type="file"
+                        id="upload_image"></input></label>
                 <div id="errtxt"></div>
                 <div id="classificationArea">
                     <span id="checktxt"></span>
@@ -52,8 +55,7 @@
             <section class="commonbox promptSection">
                 <div class="sectionTitle">1. クオリティ / Quality</div>
                 <input type="text" id="quality_input"><button onclick="addWord('quality', null)">追加 / Add</button>
-                <div class="wordlist" id="quality">
-                </div>
+                <div class="wordlist" id="quality"></div>
             </section>
             <section class="commonbox promptSection">
                 <div class="sectionTitle">2. 情景・オブジェクト / Scene, Object</div>
@@ -84,16 +86,17 @@
             </section>
         </section>
         <section id="converter">
-            <h2>元素法典変換機 / "The Code of Quintessence" changer</h2>
-            <p>元素法典内プロンプトの()を{}に変換します。<br>
-                下のテキストエリアに元のプロンプトを貼り付けてください。</p>
-            <p>Change <b>()</b> of the prompt of <i>The Code of Quintessence</i> into <b>{}</b>.<br>
-                Paste the original prompt below.
-            </p>
-            <textarea id="origin"></textarea>
-            <h3>出力結果 / Result</h3>
-            <div id="prompt_converted"></div>
-            <button class="copybtn" onclick="copyOutput('prompt_converted')">コピー / Copy</button>
+            <h2>Prompt converter</h2>
+            <p>通常の括弧<b> () </b>と波括弧<b> {} </b>を相互に変換します。</p>
+            <h3>{波括弧入りプロンプト / NovelAI style}</h3>
+            <!-- <span class="copied" id="prompt_converted_result">✓ コピーしました / Copied</span> -->
+            <textarea id="prompt_brace" oninput="convertPromptController('b2n')"
+                placeholder="{{masterpiece}}, {{best quality}}, {{illustration}}, ..."></textarea>
+            <button class="copybtn" onclick="copyOutput('prompt_brace')">コピー / Copy</button>
+            <h3>(通常括弧入りプロンプト / Stable Diffusion style)</h3>
+            <textarea id="prompt_normal" oninput="convertPromptController('n2b')"
+                placeholder="((masterpiece)), ((best quality)), ((illustration)), ..."></textarea>
+            <button class="copybtn" onclick="copyOutput('prompt_normal')">コピー / Copy</button>
             <!-- <span class="copied" id="prompt_converted_result">✓ コピーしました / Copied</span> -->
         </section>
     </main>

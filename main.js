@@ -4,6 +4,10 @@ const promptGenres = ["quality", "scene", "body", "cloth", "misc"];
 var promptGlobal = [];
 var promptFirstWord = "";
 
+function readFromImage() {
+
+}
+
 function update() {
     const output = document.getElementById("prompt_output");
     const words = document.getElementsByClassName("word");
@@ -18,7 +22,10 @@ function update() {
 function addWord(objID, textobj) {
     let word;
     if (textobj === null) {
-        word = document.getElementById(objID + "_input").value.replaceAll("{", "").replaceAll("}", "");
+        word = document.getElementById(objID + "_input").value.replaceAll("{", "[")
+                                                              .replaceAll("}", "]")
+                                                              .replaceAll("(", "{")
+                                                              .replaceAll(")", "}");
     } else {
         word = textobj;
     }
@@ -51,7 +58,10 @@ function analyzePrompt() {
             errtxt.innerText = "Error: ASCII範囲外の文字が検出されました。/ Invalid letter detected (Out of ASCII.)";
             return
         }
-        promptArray[i] = promptArray[i].replaceAll("(", "{").replaceAll(")", "}");
+        promptArray[i] = promptArray[i].replaceAll("{", "[")
+                                       .replaceAll("}", "]")
+                                       .replaceAll("(", "{")
+                                       .replaceAll(")", "}");
         let left = (promptArray[i].match(/{/g) || []).length;
         let right = (promptArray[i].match(/}/g) || []).length;
         if (left > right) {
@@ -111,14 +121,34 @@ function wordDecrement(objID) {
 function copyOutput(objID) {
     const output = document.getElementById(objID);
     if (navigator.clipboard) {
-        navigator.clipboard.writeText(output.innerText);
+        navigator.clipboard.writeText(output.value);
         document.getElementById(objID + "");
     }
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-    document.getElementById("origin").addEventListener("input", () => {
-        document.getElementById("prompt_converted").innerText = document.getElementById("origin").value.replaceAll("(", "{").replaceAll(")", "}");
-    });
-    promptGenres.forEach(g => { document.getElementById(`${g}_input`).addEventListener("keydown", e => { if (e.code === "Enter") { addWord(g) } }) });
-});
+function convertPrompt(prompt, action) {
+    if (action === "n2b") {
+        return prompt.replaceAll("{", "[").replaceAll("}", "]").replaceAll("(", "{").replaceAll(")", "}");
+    } else if (action === "b2n") {
+        return prompt.replaceAll("[", "{").replaceAll("]", "}").replaceAll("{", "(").replaceAll("}", ")");
+    }
+}
+
+function convertPromptController(action) {
+    const normal = document.getElementById("prompt_normal");
+    const brace  = document.getElementById("prompt_brace");
+    if (action === "n2b") {
+        // Normal to Brace
+        brace.value = convertPrompt(normal.value, action);
+    } else if (action === "b2n") {
+        // Brace to Normal
+        normal.value = convertPrompt(brace.value, action);
+    }
+}
+
+// window.addEventListener('DOMContentLoaded', () => {
+//     document.getElementById("prompt_normal").addEventListener("input", () => {
+//         document.getElementById("prompt_brace").innerText = document.getElementById("prompt_normal").value.replaceAll("(", "{").replaceAll(")", "}");
+//     });
+//     promptGenres.forEach(g => { document.getElementById(`${g}_input`).addEventListener("keydown", e => { if (e.code === "Enter") { addWord(g) } }) });
+// });
