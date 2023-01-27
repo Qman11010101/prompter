@@ -130,7 +130,7 @@ function convertPrompt(prompt, action) {
     if (action === "n2b") {
         return prompt.replaceAll("{", "[").replaceAll("}", "]").replaceAll("(", "{").replaceAll(")", "}");
     } else if (action === "b2n") {
-        return prompt.replaceAll("[", "{").replaceAll("]", "}").replaceAll("{", "(").replaceAll("}", ")");
+        return prompt.replaceAll("{", "(").replaceAll("}", ")").replaceAll("[", "{").replaceAll("]", "}");
     }
 }
 
